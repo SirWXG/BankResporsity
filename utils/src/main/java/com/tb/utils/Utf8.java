@@ -12,8 +12,7 @@ public class Utf8 {
         try {
             return new String(filePath.getBytes("ISO-8859-1"), "utf-8");
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            return "";
         }
-        return "";
     }
 }
