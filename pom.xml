@@ -16,7 +16,6 @@
         <module>protal</module>
         <module>mybatis</module>
     </modules>
-    <!---->
     <properties>
         <spring-version>4.3.6.RELEASE</spring-version>
     </properties>
