@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--扫描service的实现类-->
+    <context:component-scan base-package="com.tb.dubbo_service"/>
+    <!-- 配置dubbo服务提供者的注册 -->
+    <!-- 配置服务的应用名 -->
+    <dubbo:application name="dubbo-content-service"/>
+
+    <dubbo:registry address="zookeeper://39.107.253.13:2181"/>
+    <dubbo:protocol name="dubbo" port="28080"/>
+    <!-- 对外暴露的服务接口 -->
+
+    <!--测试服务 ref为实现类首字母小写-->
+    <dubbo:service interface="com.tb.dubbo.Hello" ref="helloService"/>
+
+    <!--测试数据库连接-->
+    <dubbo:service interface="com.tb.dubbo.ItestService" ref="testService"/>
+
+</beans>

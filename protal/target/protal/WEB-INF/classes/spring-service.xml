@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<context:component-scan base-package="com.tb.dubbo"/>
+	<!--加载资源文件  -->
+	<context:property-placeholder location="classpath:res/*.properties"/>
+	<!--配置dubbo服务调用者  -->
+
+	<!--引用dubbo服务-->
+	<dubbo:application name="dubbo-portal"/>
+
+	<dubbo:registry protocol="zookeeper" address="zookeeper://39.107.253.13:2181"/>
+
+
+	<!--从dubbo中引用原来有rest提供的服务，交由sprin管理   -->
+	<dubbo:reference id="hello" interface="com.tb.dubbo.Hello"/>
+
+
+	<dubbo:reference id="testService" interface="com.tb.dubbo.ItestService"/>
+</beans>
